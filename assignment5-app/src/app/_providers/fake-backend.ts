@@ -44,10 +44,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return of(new HttpResponse({ status: 200 }));
             }
 
-            // delete user
+            // delete task
             if (request.url.match(/\/tasks\/\d+$/) && request.method === 'DELETE') {
-               
-                    // find user by id in users array
+                    // find task by id
                     let urlParts = request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     for (let i = 0; i < tasks.length; i++) {
