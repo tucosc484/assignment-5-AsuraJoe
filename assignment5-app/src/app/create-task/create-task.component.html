@@ -1,3 +1,27 @@
-<p>
-  create-task works!
-</p>
+<h1>Register Task</h1>
+<div>
+  <form class="task-form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label>Description:</label>
+      <input type="text" formControlName="description">
+    </div>
+    <div class="form-group row">
+      <div class="form-check form-check-inline">
+        <label>Is Completed?</label>
+        <input class="form-check-input" type="radio" formControlName="isComplete" value="true">
+        <label class="form-check-label">
+          Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" formControlName="isComplete" value="false" checked>
+        <label class="form-check-label">
+          No
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

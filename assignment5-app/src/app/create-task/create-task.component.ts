@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { TaskService } from '../task.service';
 @Component({
   selector: 'app-create-task',
   templateUrl: './create-task.component.html',
@@ -10,22 +11,27 @@ import { first } from 'rxjs/operators';
 export class CreateTaskComponent implements OnInit {
 
   taskForm: FormGroup;
-  loading: false;
-  submitted: true;
+  loading = false;
+  submitted = false;
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private taskService: TaskService
   ) { }
 
   ngOnInit() {
     this.taskForm = this.formBuilder.group({
-      id: '',
-      dateCreated: '',
+      dateCreated: Date.now(),
       description: '',
-      isComplete: '',
+      isComplete: Boolean,
       dateCompleted: Date
     });
   }
 
   get f() { return this.taskForm.controls; }
 
+  onSubmit() {
+    this.submitted = true;
+    this.loading = true;
+    this.taskService.create(this.taskForm.value);
+  }
 }
