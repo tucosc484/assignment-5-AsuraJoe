@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { __param } from 'tslib';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -54,14 +53,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         if (task.id === id) {
                             // delete user
                             tasks.splice(i, 1);
-                            localStorage.setItem('users', JSON.stringify(tasks));
+                            localStorage.setItem('tasks', JSON.stringify(tasks));
                             break;
                         }
             }
 
             // pass through any requests not handled above
                     return next.handle(request);
-            
+
         }))
 
         // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
