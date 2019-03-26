@@ -32,7 +32,7 @@ export class CreateTaskComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.taskForm.value.dateCreated = Date.now();
-    if (this. taskForm.value.isComplete) {
+    if (this. taskForm.value.isComplete !== false) {
       this.taskForm.value.dateCompleted = Date.now();
     }
     this.loading = true;

@@ -14,7 +14,7 @@ export class TaskService {
 }
 
 getById(id: string) {
-    return this.http.get(`${environment.apiUrl}/tasks/` + id);
+    return this.http.get<Task>(`${environment.apiUrl}/tasks/` + id);
 }
 
 create(task: Task) {
