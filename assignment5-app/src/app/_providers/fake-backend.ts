@@ -9,7 +9,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     constructor() { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // array in local storage for registered users
+        // array in local storage for registered tasks
         let tasks: any[] = JSON.parse(localStorage.getItem('tasks')) || [];
 
         // wrap in delayed observable to simulate server api call
@@ -52,7 +52,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     for (let i = 0; i < tasks.length; i++) {
                         let task = tasks[i];
                         if (task.id === id) {
-                            // delete user
+                            // delete task
                             tasks.splice(i, 1);
                             localStorage.setItem('tasks', JSON.stringify(tasks));
                             break;
@@ -60,6 +60,25 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     }
                     return of(new HttpResponse({ status: 200 }));
                 }
+
+            if (request.url.match(/\/tasks\/\d+$/) && request.method === 'PUT') {
+                    // find task by id in tasks array
+                    let urlParts = request.url.split('/');
+                    const id = parseInt(urlParts[urlParts.length - 1]);
+                    for (let i = 0; i < tasks.length; i++) {
+                        let task = tasks[i];
+                        if (task.id === id) {
+                            // update task
+                            tasks[i] = request.body;
+                            localStorage.setItem('tasks', JSON.stringify(tasks));
+                            break;
+                        }
+                    }
+                    let matchedTask = tasks.filter(task => task.id === id);
+                    let task = matchedTask.length ? matchedTask[0] : null;
+
+                    return of(new HttpResponse({ status: 200, body: task }));
+            }
             // pass through any requests not handled above
             return next.handle(request);
 

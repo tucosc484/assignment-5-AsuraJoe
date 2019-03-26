@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
 import { first } from 'rxjs/operators';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-task-detail',
@@ -11,6 +12,8 @@ import { first } from 'rxjs/operators';
 })
 export class TaskDetailComponent implements OnInit {
   task: Task ;
+  taskForm: FormGroup;
+  formBuilder: FormBuilder;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +23,10 @@ export class TaskDetailComponent implements OnInit {
   ngOnInit() {
     this.taskService.getById(this.route.snapshot.params.id).pipe(first())
     .subscribe( task => { this.task = task; });
+    this.taskForm = this.formBuilder.group({
+      dateCreated: this.task.dateCreated,
+      description: this.task.description,
+      isComplete: this.task.isComplete,
+    }) ;
   }
-
 }
