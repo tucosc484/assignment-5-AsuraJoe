@@ -7,6 +7,7 @@ import { fakeBackendProvider } from './_providers/fake-backend';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TaskService } from './task.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
+    TaskService,
     fakeBackendProvider
   ],
   bootstrap: [AppComponent]
