@@ -22,6 +22,11 @@ create(task: Task) {
 }
 
 update(task: Task) {
-    return this.http.put(`${environment.apiUrl}/task/` + task.id, task);
+    return this.http.put(`${environment.apiUrl}/tasks/` + task.id, task);
 }
+
+delete(id: string) {
+    return this.http.delete(`${environment.apiUrl}/tasks/` + id);
+}
+
 }

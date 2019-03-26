@@ -8,11 +8,13 @@ import { CreateTaskComponent } from './create-task/create-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskService } from './task.service';
+import { TaskListComponent } from './task-list/task-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    TaskListComponent
   ],
   imports: [
     BrowserModule,

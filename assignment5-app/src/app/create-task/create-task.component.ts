@@ -29,13 +29,12 @@ export class CreateTaskComponent implements OnInit {
 
   get f() { return this.taskForm.controls; }
 
-  taskCompleted() {
-    this.taskForm.value.dateCompleted = Date.now();
-  }
-
   onSubmit() {
     this.submitted = true;
     this.taskForm.value.dateCreated = Date.now();
+    if (this. taskForm.value.isComplete) {
+      this.taskForm.value.dateCompleted = Date.now();
+    }
     this.loading = true;
     this.taskService.create(this.taskForm.value)
       .pipe(first())

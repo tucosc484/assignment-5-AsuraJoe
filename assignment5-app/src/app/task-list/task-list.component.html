@@ -1,0 +1,6 @@
+<h3>All registered Tasks:</h3>
+<ul>
+    <li *ngFor="let task of tasks">
+    Task {{task.id}}: {{task.description}}
+    - <button (click)="deleteTask(task.id)" class="text-danger">Delete</button>
+</ul>
