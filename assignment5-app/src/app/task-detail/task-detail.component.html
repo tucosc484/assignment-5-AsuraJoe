@@ -2,9 +2,7 @@
 <h2>Task #{{id}}</h2>
 <h3>Created Date: {{task.dateCreated}}</h3>
 <p>{{task.description}}</p>
-<h3>Is complete: {{task.isComplete}}
-
-</h3><button (click)="taskUpdate()">Update</button>
+<h3>Is complete: {{task.isComplete}}</h3><button (click)="taskUpdate()">Update</button>    |   <button [routerLink]="['/']">Return</button>
 </div>
 
 <div *ngIf="update">
@@ -29,8 +27,7 @@
         </div>
       </div>
       <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Submit</button>
+          <button [disabled]="loading" class="btn btn-primary">Submit</button>   |   <button (click)="cancel()">Cancel</button>
       </div>
     </form>
-    <pre>{{ taskForm.value | json }} {{submitted}}</pre>
   </div>

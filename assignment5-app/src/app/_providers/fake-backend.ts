@@ -15,12 +15,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
 
-            if (request.url.endsWith('/tasks') && request.method === 'GET') {
+            if (request.url.endsWith('/_tasks') && request.method === 'GET') {
                     return of(new HttpResponse({ status: 200, body: tasks }));
             }
 
             // get task by id
-            if (request.url.match(/\/tasks\/\d+$/) && request.method === 'GET') {
+            if (request.url.match(/\/_tasks\/\d+$/) && request.method === 'GET') {
                     // find task by id in tasks array
                     let urlParts = request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
@@ -31,7 +31,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             }
 
             // create task
-            if (request.url.endsWith('/tasks/create') && request.method === 'POST') {
+            if (request.url.endsWith('/_tasks/create') && request.method === 'POST') {
                 // get new task object from post body
                 let newTask = request.body;
 
@@ -45,7 +45,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             }
 
             // delete task
-            if (request.url.match(/\/tasks\/\d+$/) && request.method === 'DELETE') {
+            if (request.url.match(/\/_tasks\/\d+$/) && request.method === 'DELETE') {
                     // find task by id
                     let urlParts = request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
@@ -61,7 +61,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return of(new HttpResponse({ status: 200 }));
                 }
 
-            if (request.url.match(/\/tasks\/\d+$/) && request.method === 'PUT') {
+            if (request.url.match(/\/_tasks\/\d+$/) && request.method === 'PUT') {
                     // find task by id in tasks array
                     let urlParts = request.url.split('/');
                     const id = parseInt(urlParts[urlParts.length - 1]);

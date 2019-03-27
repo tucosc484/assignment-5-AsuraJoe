@@ -11,7 +11,7 @@ import { TaskService } from '../task.service';
 export class TaskListComponent implements OnInit {
   tasks: Task[];
   constructor(private taskService: TaskService) { }
-
+  /** preload form */
   ngOnInit() {
     this.listTasks();
   }
@@ -22,8 +22,5 @@ export class TaskListComponent implements OnInit {
     this.taskService.getAll().pipe().subscribe( tasks => {
       this.tasks = tasks;
     });
-  }
-  deleteTask(id: string) {
-    this.taskService.delete(id).pipe(first()).subscribe( () => this.listTasks());
   }
 }

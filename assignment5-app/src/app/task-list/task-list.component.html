@@ -1,6 +1,4 @@
-<h3>All registered Tasks:</h3>
+<h3>All registered Tasks (<button [routerLink]="['/tasks/create']">Create new task</button>):</h3>
 <ul>
-    <li *ngFor="let task of tasks">
-    Task {{task.id}}: {{task.description}}
-    - <button (click)="deleteTask(task.id)" class="text-danger">Delete</button>
+    <taskItem *ngFor="let task of tasks" [task]="task"></taskItem>
 </ul>

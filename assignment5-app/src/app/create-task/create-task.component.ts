@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { TaskService } from '../task.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-task',
   templateUrl: './create-task.component.html',
@@ -15,7 +16,8 @@ export class CreateTaskComponent implements OnInit {
   submitted = false;
   constructor(
     private formBuilder: FormBuilder,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router
   ) { }
   /** preload form  */
   ngOnInit() {
@@ -42,7 +44,8 @@ export class CreateTaskComponent implements OnInit {
     this.taskService.create(this.taskForm.value)
       .pipe(first())
         .subscribe(
-          data => {console.log('success'); },
+          data => {console.log('success');
+                   this.router.navigate(['/']); },
           error => {console.log('failure'); }
         );
   }

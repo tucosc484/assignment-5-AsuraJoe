@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { TaskService } from './task.service';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { TaskListItemComponentComponent } from './task-list-item-component/task-list-item-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateTaskComponent,
     TaskListComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    TaskListItemComponentComponent
   ],
   imports: [
     BrowserModule,
