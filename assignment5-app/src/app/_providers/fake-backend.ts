@@ -74,10 +74,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                             break;
                         }
                     }
-                    let matchedTask = tasks.filter(task => task.id === id);
-                    let task = matchedTask.length ? matchedTask[0] : null;
-
-                    return of(new HttpResponse({ status: 200, body: task }));
+                    return of(new HttpResponse({ status: 200 }));
             }
             // pass through any requests not handled above
             return next.handle(request);

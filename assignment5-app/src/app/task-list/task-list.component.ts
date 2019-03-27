@@ -15,14 +15,15 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {
     this.listTasks();
   }
-
+  /**
+   * load all task tasks
+   */
   private listTasks() {
     this.taskService.getAll().pipe().subscribe( tasks => {
       this.tasks = tasks;
     });
   }
-
-  deleteTask(id) {
+  deleteTask(id: string) {
     this.taskService.delete(id).pipe(first()).subscribe( () => this.listTasks());
   }
 }

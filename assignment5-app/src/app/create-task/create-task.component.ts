@@ -17,7 +17,7 @@ export class CreateTaskComponent implements OnInit {
     private formBuilder: FormBuilder,
     private taskService: TaskService
   ) { }
-
+  /** preload form  */
   ngOnInit() {
     this.taskForm = this.formBuilder.group({
       dateCreated: Date,
@@ -26,16 +26,19 @@ export class CreateTaskComponent implements OnInit {
       dateCompleted: Date
     });
   }
-
+  /** shorten the form controls */
   get f() { return this.taskForm.controls; }
 
+  /** controls what happens when the form is submitted and adding completion date if task is completed */
   onSubmit() {
     this.submitted = true;
     this.taskForm.value.dateCreated = Date.now();
+    // add completed date if created and completed on the same day
     if (this. taskForm.value.isComplete !== false) {
       this.taskForm.value.dateCompleted = Date.now();
     }
     this.loading = true;
+    // post the form into a task
     this.taskService.create(this.taskForm.value)
       .pipe(first())
         .subscribe(

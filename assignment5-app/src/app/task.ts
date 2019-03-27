@@ -1,3 +1,4 @@
+// Task object
 export class Task {
     id: number;
     dateCreated: Date;

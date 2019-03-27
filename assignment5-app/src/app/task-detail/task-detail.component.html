@@ -1,4 +1,36 @@
-<h2>Task #{{task.id}}</h2>
+<div *ngIf="!update">
+<h2>Task #{{id}}</h2>
 <h3>Created Date: {{task.dateCreated}}</h3>
 <p>{{task.description}}</p>
-<h3>Is complete: {{task.isComplete}}</h3>
+<h3>Is complete: {{task.isComplete}}
+
+</h3><button (click)="taskUpdate()">Update</button>
+</div>
+
+<div *ngIf="update">
+    <form class="task-form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label>Description:</label>
+        <input type="text" formControlName="description">
+      </div>
+      <div class="form-group row">
+        <div class="form-check form-check-inline">
+          <label>Is Completed?</label>
+          <input class="form-check-input" type="radio" formControlName="isComplete" [value]="true">
+          <label class="form-check-label">
+            Yes
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="isComplete" [value]= "false">
+          <label class="form-check-label">
+            No
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    <pre>{{ taskForm.value | json }} {{submitted}}</pre>
+  </div>
