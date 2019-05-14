@@ -15,7 +15,7 @@ export class TaskDetailComponent implements OnInit {
   taskForm: FormGroup;
   loading = false;
   update = false;
-  id: string;
+  id: number;
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,

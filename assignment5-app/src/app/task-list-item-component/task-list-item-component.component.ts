@@ -22,7 +22,7 @@ export class TaskListItemComponentComponent implements OnInit {
    * delete the task and then refresh the page
    * @param id - id to search for task
    */
-  deleteTask(id: string) {
+  deleteTask(id: number) {
     this.taskService.delete(id).pipe(first()).subscribe( () => this.router.navigate(['/']));
   }
 
