@@ -13,21 +13,21 @@ export class TaskService {
  * Get All tasks.
  */
   getAll() {
-    return this.http.get<Task[]>(`${environment.apiUrl}/_tasks`);
+    return this.http.get<Task[]>(`${environment.apiUrl}/tasks`);
 }
 /**
  * Get Task by id.
  * @param {number} id - task's id
  */
 getById(id: number) {
-    return this.http.get<Task>(`${environment.apiUrl}/_tasks/` + id);
+    return this.http.get<Task>(`${environment.apiUrl}/tasks/` + id);
 }
 /**
  * create task.
  * @param {Task} task- new task
  */
 create(task: Task) {
-    return this.http.post(`${environment.apiUrl}/_tasks/create`, task);
+    return this.http.post(`${environment.apiUrl}/tasks/create`, task);
 }
 /**
  * delete task.
@@ -35,14 +35,14 @@ create(task: Task) {
  * @param {Task} task- updated body
  */
 update(id: number, task: Task) {
-    return this.http.put(`${environment.apiUrl}/_tasks/` + id, task);
+    return this.http.put(`${environment.apiUrl}/tasks/` + id, task);
 }
 /**
  * delete task.
  * @param {number} id - task's id
  */
 delete(id: number) {
-    return this.http.delete(`${environment.apiUrl}/_tasks/` + id);
+    return this.http.delete(`${environment.apiUrl}/tasks/` + id);
 }
 
 }

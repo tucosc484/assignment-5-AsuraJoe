@@ -28,7 +28,7 @@ import { TaskListItemComponentComponent } from './task-list-item-component/task-
   ],
   providers: [
     TaskService,
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
