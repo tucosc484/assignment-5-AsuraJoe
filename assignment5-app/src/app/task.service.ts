@@ -27,7 +27,7 @@ getById(id: number) {
  * @param {Task} task- new task
  */
 create(task: Task) {
-    return this.http.post(`${environment.apiUrl}/tasks/create`, task);
+    return this.http.post(`${environment.apiUrl}/tasks/`, task);
 }
 /**
  * delete task.
